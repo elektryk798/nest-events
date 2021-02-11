@@ -15,7 +15,7 @@ export class UserService {
     return await this.users.findOne({ email: email });
   }
 
-  async create(userData: Partial<UserEntity>): Promise<any> {
+  async create(userData: Partial<UserEntity>): Promise<Partial<UserEntity>> {
     if (await this.getOneByEmail(userData.email)) {
       throw new BadRequestException();
     }

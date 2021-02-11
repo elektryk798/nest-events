@@ -1,10 +1,24 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  CreateDateColumn,
+  UpdateDateColumn,
+  BaseEntity,
+  OneToMany
+} from 'typeorm';
+import { UserInterface } from './user.interface';
+import {EventEntity} from "../Event/event.entity";
 
 @Entity('users')
 @Unique(['email'])
-export class UserEntity {
+export class UserEntity extends BaseEntity implements UserInterface {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @OneToMany(type => EventEntity, event => event.user)
+  events: EventEntity[];
 
   @Column('text')
   email: string;
@@ -17,4 +31,17 @@ export class UserEntity {
 
   @Column({ nullable: true })
   lastName: string;
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+    onUpdate: 'CURRENT_TIMESTAMP(6)',
+  })
+  updatedAt: Date;
 }

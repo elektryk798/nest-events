@@ -31,12 +31,20 @@ export class AuthService {
 
     const payload = { email: user.email, id: user.id };
 
+    const token = this.jwtService.sign(payload);
+
+    await this.usersService.saveToken(user.id, token);
+
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: token,
     };
   }
 
   async register(userData: Partial<UserEntity>): Promise<void> {
     await this.usersService.create(userData);
+  }
+
+  async logout(userId: string): Promise<void> {
+    await this.usersService.saveToken(userId, null);
   }
 }

@@ -32,6 +32,9 @@ export class UserEntity extends BaseEntity implements UserInterface {
   @Column({ nullable: true })
   lastName: string;
 
+  @Column({ nullable: true })
+  token: string;
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',

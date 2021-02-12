@@ -14,12 +14,12 @@ import {
 import { EventService } from '../Services/event.service';
 import { JwtAuthGuard } from '../../User/Passport/Guards/jwt-auth.guard';
 
-@Controller()
+@Controller('api/events')
 export class EventController {
     constructor(private readonly eventService: EventService) {}
 
     @UseGuards(JwtAuthGuard)
-    @Post('api/event')
+    @Post()
     async create(@Request() req) {
         if (req.body.start > req.body.end) {
             throw new BadRequestException();
@@ -29,19 +29,19 @@ export class EventController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('api/event')
+    @Get()
     async list(@Request() req) {
         return this.eventService.getAll(req.user.id);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('api/event/list')
+    @Get('/list')
     async paginatedList(@Request() req, @Query() query) {
         return this.eventService.getAllPaginated({page: query.page ?? 1, limit: query.limit ?? 10}, req.user.id, query.filter);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('api/event/:id')
+    @Put('/:id')
     async update(@Param('id', new ParseUUIDPipe()) id: string, @Request() req) {
         const event = await this.eventService.getOneById(id);
 
@@ -57,7 +57,7 @@ export class EventController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('api/event/:id')
+    @Get('/:id')
     async getOne(@Param('id', new ParseUUIDPipe()) id: string, @Request() req) {
         const event = await this.eventService.getOneById(id);
 
@@ -71,7 +71,7 @@ export class EventController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Delete('api/event/:id')
+    @Delete('/:id')
     async delete(@Param('id', new ParseUUIDPipe()) id: string) {
         const event = await this.eventService.getOneById(id);
 

@@ -15,6 +15,14 @@ export class UserService {
     return await this.users.findOne({ email: email });
   }
 
+  async saveToken(userId: string, token?: string): Promise<void> {
+    const user = await this.users.findOne({ id: userId });
+
+    const userData = {...user, token: token};
+
+    await this.users.save(userData);
+  }
+
   async create(userData: Partial<UserEntity>): Promise<Partial<UserEntity>> {
     if (await this.getOneByEmail(userData.email)) {
       throw new BadRequestException();

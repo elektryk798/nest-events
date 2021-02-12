@@ -19,8 +19,8 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('api/profile')
-  async profile(@Request() req) {
-    return req.user;
+  @Get('api/auth/logout')
+  async logout(@Request() req) {
+    await this.authService.logout(req.user.id);
   }
 }

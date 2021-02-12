@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "3abc029b-0faa-4b57-9b90-410a52d55694",
+		"name": "Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get one",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTA5OTIyLCJleHAiOjE2MTMxMTA4MjJ9.KXekUWSDFijyMEDuIkXg3iKGZNf8m-Gj4n1xWKyyU_Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/events/a40ea211-03eb-44e0-868c-1e498765a3c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events",
+						"a40ea211-03eb-44e0-868c-1e498765a3c3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTA5OTIyLCJleHAiOjE2MTMxMTA4MjJ9.KXekUWSDFijyMEDuIkXg3iKGZNf8m-Gj4n1xWKyyU_Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"dzisiejszy\",\n\t\"start\": \"2021-02-11 11:11:11\",\n\t\"end\": \"2021-02-11 14:11:11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTA5OTIyLCJleHAiOjE2MTMxMTA4MjJ9.KXekUWSDFijyMEDuIkXg3iKGZNf8m-Gj4n1xWKyyU_Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"tak dzisiejszy\",\n\t\"start\": \"2021-02-11 11:11:11\",\n\t\"end\": \"2021-02-11 14:11:11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/events/127a36fc-7659-49e6-96f6-75d9f2585cd3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events",
+						"127a36fc-7659-49e6-96f6-75d9f2585cd3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTA5OTIyLCJleHAiOjE2MTMxMTA4MjJ9.KXekUWSDFijyMEDuIkXg3iKGZNf8m-Gj4n1xWKyyU_Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/events/a40ea211-03eb-44e0-868c-1e498765a3c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events",
+						"a40ea211-03eb-44e0-868c-1e498765a3c3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Events list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTEwNTE4LCJleHAiOjE2MTMxMTE0MTh9.Wescd-abvM6D3riGXFW-Hls3D0bFYCsMhJT_bPs2TN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Events list pagination/filters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5wbCIsImlkIjoiMTY1YjgyNjUtNjVhNy00OGIzLTgyYTYtODIwODRjMGQ3ZDg3IiwiaWF0IjoxNjEzMTEwNTE4LCJleHAiOjE2MTMxMTE0MTh9.Wescd-abvM6D3riGXFW-Hls3D0bFYCsMhJT_bPs2TN4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/events/list?page=1&limit=1&filter=day",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"events",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						},
+						{
+							"key": "filter",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

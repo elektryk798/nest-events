@@ -1,6 +1,7 @@
 import { Repository, EntityRepository } from 'typeorm';
 import { EventEntity } from '../event.entity';
 import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
+import * as moment from "moment";
 
 @EntityRepository(EventEntity)
 export class EventRepository extends Repository<EventEntity> {
@@ -10,7 +11,8 @@ export class EventRepository extends Repository<EventEntity> {
         query.where('events.userId = :userId', {userId: userId});
 
         if (startDate) {
-            query.where('events.start > :startDate', {startDate: startDate});
+            query.where('events.start <= :startDate', {startDate: startDate})
+                .andWhere('events.start >= :today', {today: new Date(moment().add(0, "days").format("YYYY-MM-DD"))});
         }
 
         query.orderBy('events.createdAt', 'DESC');

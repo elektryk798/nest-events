@@ -4,6 +4,7 @@ import { EventEntity } from '../event.entity';
 import { EventRepository } from '../Repositories/event.repository';
 import { IPaginationOptions, Pagination } from "nestjs-typeorm-paginate";
 import * as moment from 'moment';
+import { EventDTO } from '../DTO/event.dto';
 
 @Injectable()
 export class EventService {
@@ -21,13 +22,13 @@ export class EventService {
 
         switch (filter) {
             case 'day':
-                dateFilter = new Date(moment().subtract(0, "days").format("YYYY-MM-DD"));
+                dateFilter = new Date(moment().add(1, "days").format("YYYY-MM-DD"));
                 break;
             case 'week':
-                dateFilter = new Date(moment().subtract(6, "days").format("YYYY-MM-DD"));
+                dateFilter = new Date(moment().add(7, "days").format("YYYY-MM-DD"));
                 break;
             case 'month':
-                dateFilter = new Date(moment().subtract(1, "months").format("YYYY-MM-DD"));
+                dateFilter = new Date(moment().add(1, "months").format("YYYY-MM-DD"));
                 break;
             default:
                 dateFilter = undefined;
@@ -41,15 +42,15 @@ export class EventService {
         return this.events.find({user: {id: userId}});
     }
 
-    async update(eventData: Partial<EventEntity>, event: EventEntity): Promise<Partial<EventEntity>> {
+    async update(eventData: EventDTO, event: EventEntity): Promise<EventEntity> {
         const eventToUpdate = {...event, ...eventData};
 
         await this.events.save(eventToUpdate);
 
-        return {...eventToUpdate};
+        return await this.events.findOne({id: event.id})
     }
 
-    async create(eventData: Partial<EventEntity>, userId: string): Promise<EventEntity> {
+    async create(eventData: EventDTO, userId: string): Promise<EventEntity> {
         const event = this.events.create({...eventData, user: {id: userId}});
 
         await this.events.save(event);

@@ -1,26 +1,30 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards, Body, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthService } from '../Services/auth.service';
 import { JwtAuthGuard } from '../Passport/Guards/jwt-auth.guard';
 import { LocalAuthGuard } from '../Passport/Guards/local-auth.guard';
+import { RegisterDTO } from '../DTO/register.dto';
+import { LoginDTO } from '../DTO/login.dto';
 
-@Controller()
+@Controller('api/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('api/auth/register')
-  async register(@Request() req) {
-    return this.authService.register(req.body);
+  @UsePipes(ValidationPipe)
+  @Post('/register')
+  async register(@Body() registerDTO: RegisterDTO): Promise<void> {
+    await this.authService.register(registerDTO);
   }
 
   @UseGuards(LocalAuthGuard)
-  @Post('api/auth/login')
-  async login(@Request() req) {
-    return this.authService.login(req.body);
+  @UsePipes(ValidationPipe)
+  @Post('/login')
+  async login(@Body() loginDTO: LoginDTO): Promise<object> {
+    return await this.authService.login(loginDTO);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('api/auth/logout')
-  async logout(@Request() req) {
+  @Get('/logout')
+  async logout(@Request() req): Promise<void> {
     await this.authService.logout(req.user.id);
   }
 }
